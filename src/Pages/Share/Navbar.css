@@ -1,0 +1,22 @@
+.blood-img {
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-top: 5px;
+}
+
+.items {
+    font-size: 12px;
+    color: #ffffff;
+}
+.items:hover {
+    color: rgb(244, 244, 100);
+}
+ 

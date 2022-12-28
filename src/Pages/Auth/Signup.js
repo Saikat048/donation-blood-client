@@ -3,7 +3,7 @@ import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfil
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
-import Loading from './Share/Loading';
+import Loading from '../Share/Loading';
 
 const Signup = () => {
 
@@ -20,7 +20,7 @@ const Signup = () => {
         user,
         loading,
         error,
-      ] = useCreateUserWithEmailAndPassword(auth);
+      ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
       const [updateProfile, updating, updateError] = useUpdateProfile(auth);
       const navigate = useNavigate()
 
@@ -35,6 +35,7 @@ const Signup = () => {
     }
 
     if (user || gUser) {
+        console.log(user)
         navigate('/home')
     }
     
@@ -121,7 +122,7 @@ const Signup = () => {
                     <p>Already have an Account? <Link className='hover:underline' to="/login"><b>Please Login</b></Link> </p>
 
                         {signInError}
-                    <input className='btn mt-4' type="submit" value='Sign Up' />
+                    <input className='btn w-full mt-4' type="submit" value='Sign Up' />
                 </form>
 
                 <div className="divider">OR</div>
