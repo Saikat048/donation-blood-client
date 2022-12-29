@@ -55,15 +55,19 @@ const Navbar = () => {
                                         </div>
                                     </div>
                                 </label>
-                                <ul tabIndex={2} className="menu menu-compact text-black font-bold dropdown-content mt-3 p-2 shadow bg-gradient-to-r from-violet-300 to-fuchsia-300 rounded-box w-28">
-                                    <li><Link to="/profile">Profile</Link></li>
+                                <ul tabIndex={2} className="menu menu-compact text-black font-bold dropdown-content mt-3 p-2 shadow bg-gradient-to-r from-violet-300 to-fuchsia-300 rounded-box w-32">
+                                    <li><Link to="/myprofile">Profile</Link></li>
                                     <li><Link onClick={logout}>Logout</Link></li>
                                 </ul>
                             </div>
                             <label htmlFor="my-drawer-2" className="btn btn-ghost btn-circle drawer-button lg:hidden"> <span><AiFillCaretDown></AiFillCaretDown></span></label>
                         </div>
                         :
-                        <> <Link to="/login" className="btn">Get started</Link></>
+                        <><Link to="/login" class="cssbuttons-io-button"> Get started
+                            <div class="icon">
+                                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path></svg>
+                            </div>
+                        </Link></>
                 }
             </div>
         </div>

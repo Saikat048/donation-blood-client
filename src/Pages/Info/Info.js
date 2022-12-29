@@ -1,5 +1,7 @@
 import React from 'react';
 import { Carousel } from 'react-carousel-minimal';
+import { Link } from 'react-router-dom';
+import './Info.css';
 
 
 const Info = () => {
@@ -83,9 +85,25 @@ const Info = () => {
                 </div>
 
                 <div>
-                    <h1 className="text-5xl font-bold">Box Office News!</h1>
-                    <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                    <button className="btn btn-primary">Get Started</button>
+                    <div className=''>
+                        <marquee width="500" className="blood font-bold mb-12 text-2xl">Donate your blood and save others life.</marquee>
+                    </div>
+
+                    <div>
+                        <h1 className="text-5xl blood mb-2 font-bold">Donate your blood.</h1>
+                        <p className="texts pr-24 text-justify mb-4">You know what, One pint of blood can save up to 3 lives. So if you want to save someone's life then you can register yourself on our website and help others by donating blood. If you need blood then you will get all types of blood from us.</p>
+                        <Link to="/login" class="cssbuttons-io-button"> Get started
+                            <div class="icon">
+                                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path></svg>
+                            </div>
+                        </Link>
+                        {/* <Link class="learn-more">
+                            <span class="circle" aria-hidden="true">
+                                <span class="icon arrow"></span>
+                            </span>
+                            <span class="button-text">Get started</span>
+                        </Link> */}
+                    </div>
                 </div>
             </div>
         </div>
