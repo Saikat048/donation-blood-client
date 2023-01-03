@@ -9,7 +9,7 @@ const InfoDetail = () => {
     const [user] = useAuthState(auth)
 
     const [userInfo, setUserInfo] = useState({})
-    console.log(userInfo)
+    // console.log(userInfo)
 
     useEffect(() => {
         const url = `https://dination-blood-server.onrender.com/info/${userId}`

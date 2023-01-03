@@ -5,15 +5,15 @@ const Home = () => {
 
     const [users, setUsers] = useState([]);
     const [infos, setInfos] = useState([]);
-    console.log(infos)
+    // console.log(infos)
     // const [selectedAddress, setSelectedAddress] = useState([]);
     // const [selectedBloodGroup, setSelectedBloodGroup] = useState([]);
     // const [singleAddress, setSingleAddress] = useState('');
     // console.log(singleAddress)
     const [filterAddress, setFilterAddress] = useState('');
-    console.log(filterAddress)
+    // console.log(filterAddress)
     const [filterBlood, setFilterBlood] = useState('');
-    console.log(filterBlood)
+    // console.log(filterBlood)
 
     useEffect(() => {
         const url = "https://dination-blood-server.onrender.com/info";
@@ -23,12 +23,12 @@ const Home = () => {
     }, [])
 
 
-    useEffect(() => {
-        const url = `https://dination-blood-server.onrender.com/findAddress?address=${filterAddress}`
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setInfos(data))
-    }, [])
+    // useEffect(() => {
+    //     const url = `https://dination-blood-server.onrender.com/findAddress?address=${filterAddress}`
+    //     fetch(url)
+    //         .then(res => res.json())
+    //         .then(data => setInfos(data))
+    // }, [])
 
 
     // useEffect(() => {
