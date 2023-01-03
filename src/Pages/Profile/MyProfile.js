@@ -11,7 +11,7 @@ const MyProfile = () => {
     const [user] = useAuthState(auth)
 
     useEffect(() => {
-        const url = `http://localhost:5000/findUser?email=${user.email}`
+        const url = `https://dination-blood-server.onrender.com/findUser?email=${user.email}`
         fetch(url)
             .then(res => res.json())
             .then(data => setProfileInfo(data[0]))

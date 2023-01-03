@@ -16,7 +16,7 @@ const Home = () => {
     console.log(filterBlood)
 
     useEffect(() => {
-        const url = "http://localhost:5000/info";
+        const url = "https://dination-blood-server.onrender.com/info";
         fetch(url)
             .then(res => res.json())
             .then(data => setUsers(data))
@@ -24,7 +24,7 @@ const Home = () => {
 
 
     useEffect(() => {
-        const url = `http://localhost:5000/findAddress?address=${filterAddress}`
+        const url = `https://dination-blood-server.onrender.com/findAddress?address=${filterAddress}`
         fetch(url)
             .then(res => res.json())
             .then(data => setInfos(data))
@@ -32,7 +32,7 @@ const Home = () => {
 
 
     // useEffect(() => {
-    //     const url = `http://localhost:5000/findBlood?blood=${filterBlood}`
+    //     const url = `https://dination-blood-server.onrender.com/findBlood?blood=${filterBlood}`
     //     fetch(url)
     //         .then(res => res.json())
     //         .then(data => setInfos(data))

@@ -12,7 +12,7 @@ const InfoDetail = () => {
     console.log(userInfo)
 
     useEffect(() => {
-        const url = `http://localhost:5000/info/${userId}`
+        const url = `https://dination-blood-server.onrender.com/info/${userId}`
         fetch(url)
             .then(res => res.json())
             .then(data => setUserInfo(data))

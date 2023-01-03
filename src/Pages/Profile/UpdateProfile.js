@@ -45,7 +45,7 @@ const UpdateProfile = () => {
 
 
         console.log(info)
-        const url = `http://localhost:5000/info/${email}`
+        const url = `https://dination-blood-server.onrender.com/info/${email}`
         fetch(url, {
             method: 'PUT',
             headers: {
