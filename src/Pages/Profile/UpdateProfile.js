@@ -1,42 +1,72 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import './UpdateProfile.css';
+import Swal from 'sweetalert2';
 
 const UpdateProfile = () => {
 
     const [user] = useAuthState(auth);
-    const [selectedAddress, setSelectedAddress] = useState([]);
-    const [selectedBloodGroup, setSelectedBloodGroup] = useState([]);
-    const [singleAddress, setSingleAddress] = useState('');
-    const [singleBlood, setSingleBlood] = useState('');
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [phone, setPhone] = useState('')
-    const [age, setAge] = useState('')
-    const [height, setHeight] = useState('')
-    const [weight, setWeight] = useState('')
-    const [image, setImage] = useState('')
+    // const [selectedAddress, setSelectedAddress] = useState([]);
+    // const [selectedBloodGroup, setSelectedBloodGroup] = useState([]);
+    // const [address, setSingleAddress] = useState('');
+    // const [blood, setSingleBlood] = useState('');
+    const navigate = useNavigate()
 
-    useEffect(() => {
-        fetch("address.json")
-            .then(res => res.json())
-            .then(data => setSelectedAddress(data))
-    }, [])
+    // useEffect(() => {
+    //     fetch("address.json")
+    //         .then(res => res.json())
+    //         .then(data => setSelectedAddress(data))
+    // }, [])
 
-    useEffect(() => {
-        fetch("bloodGroup.json")
-            .then(res => res.json())
-            .then(data => setSelectedBloodGroup(data))
-    }, [])
+    // useEffect(() => {
+    //     fetch("bloodGroup.json")
+    //         .then(res => res.json())
+    //         .then(data => setSelectedBloodGroup(data))
+    // }, [])
 
-    const info = { name, email, phone, age, height, weight, singleAddress, singleBlood, image }
 
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
+
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+        const phone = e.target.phone.value;
+        const age = e.target.age.value;
+        const height = e.target.height.value;
+        const weight = e.target.weight.value;
+        const address = e.target.address.value
+        const blood = e.target.blood.value;
+        const image = e.target.image.value;
+
+        const info = { name, email, phone, age, height, weight, address, blood, image }
+
+
         console.log(info)
+        const url = `http://localhost:5000/info/${email}`
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(info),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                if (data.acknowledged) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Your profile is updated",
+                        showConfirmButton: false,
+                        timer: 2000,
+                    })
+                    navigate('/myprofile')
+                }
+            })
     }
 
 
@@ -54,7 +84,7 @@ const UpdateProfile = () => {
                             type="text"
                             placeholder="Your Full Name"
                             className="input input-bordered w-full max-w-xs"
-                            onBlur={(e) => setName(e.target.value)}
+                            name='name'
                             required
                         />
                     </div>
@@ -65,10 +95,10 @@ const UpdateProfile = () => {
                             <span className="label-text">Email</span>
                         </label>
                         <input
+                            value={user.email}
                             type="email"
-                            placeholder="Your Email"
                             className="input input-bordered w-full max-w-xs"
-                            onBlur={(e) => setEmail(e.target.value)}
+                            name='email'
                             required
                         />
                     </div>
@@ -82,7 +112,7 @@ const UpdateProfile = () => {
                             type="number"
                             placeholder="Your Phone Number"
                             className="input input-bordered w-full max-w-xs"
-                            onBlur={(e) => setPhone(e.target.value)}
+                            name='phone'
                             required
                         />
                     </div>
@@ -98,7 +128,7 @@ const UpdateProfile = () => {
                                 type="number"
                                 placeholder="Age"
                                 className="input input-bordered w-full max-w-xs"
-                                onBlur={(e) => setAge(e.target.value)}
+                                name='age'
                                 required
                             />
                         </div>
@@ -109,10 +139,9 @@ const UpdateProfile = () => {
                                 <span className="label-text">Height</span>
                             </label>
                             <input
-                                type="number"
-                                placeholder="Height"
+                                type="text"
                                 className="input input-bordered w-full max-w-xs"
-                                onBlur={(e) => setHeight(e.target.value)}
+                                name='height'
                                 required
                             />
                         </div>
@@ -126,7 +155,7 @@ const UpdateProfile = () => {
                                 type="number"
                                 placeholder="Weight"
                                 className="input input-bordered w-full max-w-xs"
-                                onBlur={(e) => setWeight(e.target.value)}
+                                name='weight'
                                 required
                             />
                         </div>
@@ -137,7 +166,17 @@ const UpdateProfile = () => {
 
                     <div className='flex py-4 gap-4'>
                         <div className="form-control w-full max-w-xs">
-                            <select
+                            <label className="label">
+                                <span className="label-text">Address</span>
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="Address"
+                                className="input input-bordered w-full max-w-xs"
+                                name='address'
+                                required
+                            />
+                            {/* <select
                                 className='address'
                                 onChange={(e) => setSingleAddress(e.target.value)}
                                 required
@@ -146,11 +185,21 @@ const UpdateProfile = () => {
                                     selectedAddress.map(address => <option value={address}  >{address}</option>)
                                 }
 
-                            </select>
+                            </select> */}
                         </div>
 
                         <div className="form-control w-full max-w-xs">
-                            <select
+                            <label className="label">
+                                <span className="label-text">Blood Group</span>
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="Blood Group"
+                                className="input input-bordered w-full max-w-xs"
+                                name='blood'
+                                required
+                            />
+                            {/* <select
                                 className='btn btn-active btn-ghost'
                                 onChange={(e) => setSingleBlood(e.target.value)}
                                 required
@@ -160,14 +209,14 @@ const UpdateProfile = () => {
                                     // className="btn"
                                     >{blood}</option>)
                                 }
-                            </select>
+                            </select> */}
                         </div>
                     </div>
                     <div className="form-control mb-4 w-full max-w-xs">
                         <input type="file"
                             accept="image/png, image/jpg"
                             className=""
-                            onBlur={(e) => setImage(e.target.value)}
+                            name='image'
                             required
                         />
                     </div>

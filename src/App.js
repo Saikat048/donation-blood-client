@@ -7,6 +7,7 @@ import RequireAuth from "./Pages/Auth/RequireAuth";
 import Info from "./Pages/Info/Info";
 import UpdateProfile from "./Pages/Profile/UpdateProfile";
 import MyProfile from "./Pages/Profile/MyProfile";
+import InfoDetail from "./Pages/Home/InfoDetail";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Home></Home>
         </RequireAuth>}></Route>
         <Route path="/" element={<Info></Info>}></Route>
+        <Route path="/:userId" element={<InfoDetail></InfoDetail>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signup" element={<Signup></Signup>}></Route>
         <Route path="/updateprofile" element={<RequireAuth>
